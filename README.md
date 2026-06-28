@@ -1,2 +1,2 @@
 # Open-Atlas-Hackathon
-## Contributors: Julia Lau &
+## Contributors: Julia Lau & Angela Wang
