@@ -1,1 +1,1 @@
-# Open-Atlas-Hackaton
+# Open-Atlas-Hackathon
