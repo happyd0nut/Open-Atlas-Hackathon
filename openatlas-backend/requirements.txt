@@ -1,0 +1,2 @@
+# tells Render/other computers what Python packages your backend needs.
+pip freeze > requirements.txt

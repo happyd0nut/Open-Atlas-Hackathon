@@ -1,0 +1,8 @@
+# .gitignore prevents private/unnecessary files being pushed into GitHub like our virtual environment and environment variables
+# Ignore the virtual environment
+venv/ 
+# Ignore environment variables
+.env
+# Ignore Python cache files
+__pycache__/
+*.pyc
