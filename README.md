@@ -1,7 +1,22 @@
 # Open-Atlas-Hackathon
 ## Contributors: Julia Lau & Angela Wang
 
-### Running the Backend:
+### Running the Backend with Docker:
+
+#### Create the Docker Image:
+cd backend
+
+docker build -t openatlas-backend .
+
+#### Run:
+
+docker run -p 8000:8000 openatlas-backend
+
+#### Open in Browser
+
+http://127.0.0.1:8000/docs
+
+### Running the Backend before Docker:
 
 #### In the backend folder:
 
