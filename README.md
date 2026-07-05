@@ -3,7 +3,7 @@
 
 ### Instructions on running the backend:
 
-#### in openatlas-backend folder:
+#### in the backend folder:
 
 source venv/bin/activate
   
