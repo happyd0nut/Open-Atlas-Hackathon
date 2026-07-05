@@ -7,7 +7,7 @@
 
 source venv/bin/activate
   
-uvicorn app.main:app --reload
+python3 -m uvicorn app.main:app --reload
   
 #### Open in browser:
 
