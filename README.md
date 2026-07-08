@@ -32,9 +32,15 @@ http://127.0.0.1:8000/docs
   
 #### on mac CTRL C to quit
 
-### Running the Frontend:
-#### In the frontend folder:
 
+
+### Build/Run Frontend with Docker Compose:
+
+docker compose -f docker-compose.dev.yml up
+
+### Running the Frontend (No Docker):
+
+cd frontend
 npm install
 npm run dev
 
