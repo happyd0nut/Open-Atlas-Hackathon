@@ -1,12 +1,12 @@
 import { Routes, Route } from 'react-router-dom'
-import Home from './pages/Home'
-import About from './pages/About'
+import Dashboard from './pages/Dashboard'
+import Upload from './pages/Upload'
 
 export default function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/about" element={<About />} />
+      <Route path="/" element={<Upload />} />
+      <Route path="/dashboard" element={<Dashboard />} />
     </Routes>
   )
 }
