@@ -1,6 +1,13 @@
 # Open-Atlas-Hackathon
 ## Contributors: Julia Lau & Angela Wang
 
+### Running Frontend & Backend with Docker Compose:
+
+#### In root directory:
+
+docker compose down -v
+docker compose up --build
+
 ### Running the Backend with Docker:
 
 #### Create the Docker Image:
@@ -36,7 +43,11 @@ http://127.0.0.1:8000/docs
 
 ### Build/Run Frontend with Docker Compose:
 
-docker compose -f docker-compose.dev.yml up
+docker compose -f docker-compose.dev.yml down -v 
+(-v removes volumes too, including node_modules)
+
+docker compose -f docker-compose.dev.yml up --build
+(--build reruns npm ci from package.json)
 
 ### Running the Frontend (No Docker):
 

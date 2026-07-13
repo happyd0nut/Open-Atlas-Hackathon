@@ -4,12 +4,12 @@ from app.services.document_processor import process_pdf
 app = FastAPI()
 
 
-@app.get("/")
+@app.get("/api")
 def root():
     return {"message": "Open Atlas backend is running"}
 
 
-@app.post("/upload")
+@app.post("/api/upload")
 async def upload_document(file: UploadFile = File(...)):
     if file.content_type != "application/pdf":
         raise HTTPException(status_code=400, detail="Only PDF files are supported right now.")
