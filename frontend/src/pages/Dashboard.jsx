@@ -1,7 +1,12 @@
+import SideBar from './components/SideBar'
+
 export default function Dashboard() {
   return (
-    <div>
-      <h1>Home Page</h1>
-    </div>
+    <>
+      <div className="flex h-screen py-5">
+        <SideBar/>
+      </div>
+    </>
+      
   )
 }

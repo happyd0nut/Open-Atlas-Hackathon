@@ -95,30 +95,7 @@ export default function UploadBox() {
     // }
 
     return (
-        <>
-    
-            {/* <div className="space-y-4">
-                <input type="file" onChange={handleFileChange} />
-                { file && (
-                    <div className="mb-4 text-sm">
-                        <p>File Name: {file.name}</p>
-                        <p>File Size: {(file.size / 1024).toFixed(2)} KB</p>
-                        <p>File Type: {file.type}</p>
-                    </div>
-                )}
-                { file && status != allStatuses.UPLOADING && <button onClick={handleFileUpload}>Upload</button> }
-                { status == allStatuses.SUCCESS && (
-                    <p className="text-sm text-green-600">
-                        Success!
-                    </p>
-                )}
-                { status == allStatuses.ERROR && (
-                    <p className="text-sm text-red-600">
-                        Failure.
-                    </p>
-                )}
-            </div> */}
-             
+        <>   
             <>
                 <div {...getRootProps({className : "flex flex-col items-center border-2 border-dashed border-gray-300 rounded-2xl p-16 text-center"})}>
                     <UploadCloud className="w-6 h-6" style={{ color: '#0F3B36' }} />
@@ -129,10 +106,11 @@ export default function UploadBox() {
                     <p className="text-sm text-gray-500 max-w-sm">
                         Lease, insurance, visa notice, medical bill, bank letter — we'll explain it.
                     </p>
+                    if 
                     <button className="rounded-md bg-[#0F3B36] px-4 py-2 text-sm font-medium text-white mt-4">
                         Choose File
                     </button>
-                    <p>file: {files}</p>
+                    <p className="py-3">{files}</p>
                 </div>
             </>
             
