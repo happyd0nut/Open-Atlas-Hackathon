@@ -14,22 +14,23 @@ export default function UploadBox() {
         SUCCESS: 'Success',
         ERROR: 'Error',
     }
-    // const [file, setFile] = useState(null);
+
     const [status, setStatus] = useState(allStatuses.IDLE)
 
     // Using useDropzone Hook
     const {acceptedFiles, getRootProps, getInputProps} = useDropzone();
 
-    const files = acceptedFiles.map(file => (
+    const fileList = acceptedFiles.map(file => (
         <li key={file.path}>
-        {file.path} - {file.size} bytes
+            {file.path} - {file.size} bytes
         </li>
     ));
 
     const handleUpload = async () => {
         // Do something with accepted files
+        console.log("files:", fileList)
         const formData = new FormData();
-        formData.append("file", files[0]);
+        formData.append("file", acceptedFiles[0]);
 
         try { // TODO: replace with the post backend url
             // await axios.post("https://httpbin.org/post", formData);
@@ -47,6 +48,8 @@ export default function UploadBox() {
             const data = await response.json()
             console.log(data)
 
+            navigate("/dashboard", { state: { uploadResult: data } });
+
         } catch (error){
             console.log("upload error", error)
         }
@@ -54,7 +57,6 @@ export default function UploadBox() {
         // TODO: Save data to databse!!! Then retrieve after navigation to new page
 
         // Currently result is bound to navigate; on reload may forget data; best to upload to database first
-        navigate("/dashboard", { state: { uploadResult: response } });
     }
 
     return (
@@ -73,7 +75,7 @@ export default function UploadBox() {
                         <button className="rounded-md bg-[#0F3B36] mx-2 px-4 py-2 text-sm font-medium text-white mt-4">
                             Choose File
                         </button>
-                        {files[0] && 
+                        {acceptedFiles[0] && 
                         <button className="rounded-md bg-[#0F3B36] mx-2 px-4 py-2 text-sm font-medium text-white mt-4" 
                             onClick={(e) => {
                                 e.stopPropagation(); // prevents dropzone's onClick from firing
@@ -83,7 +85,7 @@ export default function UploadBox() {
                         </button>
                         }
                     </div>
-                    <p className="py-3">{files}</p>
+                    <p className="py-3">{fileList}</p>
                 </div>
             </>
             

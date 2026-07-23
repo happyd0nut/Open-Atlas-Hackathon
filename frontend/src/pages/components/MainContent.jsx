@@ -14,19 +14,21 @@ export default function MainContent({ result }) {
             <div className="flex flex-col mx-35 my-10 text-black">
                 <div className="flex justify-start mb-5">
                     <FileText className="w-4 h-6 mr-2" style={{ color: '#0F3B36' }}/>
-                    <p className="font-bold">
-                        Name of document 
+                    <p className="font-bold text-left">
+                        {result.analysis.document_title} <span className="font-normal"> - analyzed just now</span>
                     </p>
-                    <p>&nbsp;- analyzed just now</p>
                 </div>
                 <div className="flex flex-col items-start my-3 px-5 py-5 rounded-lg bg-white">
                     <div className="flex mb-2">
                         <Summary className="w-4 h-6 mr-2" style={{ color: '#0F3B36' }} strokeWidth={3} />
                         <p className="font-bold">Document Summary</p>
                     </div>
-                    <p>
-                        AI SUMMARY GOES HERE {result}
-                    </p>
+                    <div className="flex">
+                        <p className="text-left">
+                            {result.analysis.summary}
+                        </p>
+                    </div>
+                        
                 </div>
                 <div className="flex flex-col items-start my-3 px-5 py-5 rounded-lg bg-white">
                     <div className="flex mb-2">
