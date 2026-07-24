@@ -9,11 +9,11 @@ export default function Dashboard() {
 
   return (
     <>
-      <div className="flex h-screen py-5 text-black">
+      <div className="flex h-screen pt-5 text-black">
         <div className="block w-xs h-full border-r border-black-200 py-5 px-10">
           <SideBar />
         </div>
-        <div className="block w-full">
+        <div className="block w-full overflow-y-auto">
           <MainContent result={uploadResult} />
         </div>
       </div>
