@@ -1,4 +1,4 @@
-import { UploadCloud, FileText, X } from 'lucide-react'
+import { UploadCloud, FileText, LoaderCircle, X } from 'lucide-react'
 import { ChangeEvent, useState } from "react"
 import axios from "axios"
 import {useDropzone} from "react-dropzone";
@@ -17,6 +17,12 @@ export default function UploadBox() {
 
     const [status, setStatus] = useState(allStatuses.IDLE)
 
+    // loading, processing a document
+    const [isLoading, setIsLoading] = useState(false)
+
+    // error state if user doesn't upload a pdf
+    const [errorMessage, setErrorMessage] = useState("")
+
     // Using useDropzone Hook
     const {acceptedFiles, getRootProps, getInputProps} = useDropzone();
 
@@ -31,6 +37,8 @@ export default function UploadBox() {
         console.log("files:", fileList)
         const formData = new FormData();
         formData.append("file", acceptedFiles[0]);
+
+        setIsLoading(true)
 
         try { // TODO: replace with the post backend url
             // await axios.post("https://httpbin.org/post", formData);
@@ -50,13 +58,59 @@ export default function UploadBox() {
 
             navigate("/dashboard", { state: { uploadResult: data } });
 
-        } catch (error){
+        } catch (error) {
             console.log("upload error", error)
+
+            setStatus(allStatuses.ERROR)
+            setErrorMessage("You must upload a valid PDF document.")
+        }
+        finally {
+            setIsLoading(false)
         }
 
         // TODO: Save data to databse!!! Then retrieve after navigation to new page
 
         // Currently result is bound to navigate; on reload may forget data; best to upload to database first
+    }
+
+    if (isLoading) {
+        return (
+            <div className="flex flex-col items-center justify-center py-20">
+            <LoaderCircle className="h-10 w-10 animate-spin text-[#2E6F66]" />
+
+            <p className="mt-6 font-medium">
+                Analyzing your document...
+            </p>
+            </div>
+        )
+        }
+    if (status === allStatuses.ERROR) {
+        return (
+            <div className="flex flex-col items-center justify-center py-20 text-center">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full mb-2 bg-red-50">
+                    <X className="h-6 w-6 text-red-600" />
+                </div>
+
+                <p className="mt-6 font-medium text-black">
+                    Upload failed
+                </p>
+
+                <p className="mt-2 text-sm text-gray-500">
+                    {errorMessage}
+                </p>
+
+                <button
+                    type="button"
+                    className="mt-6 rounded-md bg-[#0F3B36] px-4 py-2 text-sm font-medium text-white cursor-pointer hover:opacity-90 active:bg-[#0A2B27]"
+                    onClick={() => {
+                        setStatus(allStatuses.IDLE)
+                        setErrorMessage("")
+                    }}
+                >
+                    Try Again
+                </button>
+            </div>
+        )
     }
 
     return (
@@ -71,21 +125,25 @@ export default function UploadBox() {
                     <p className="text-sm text-gray-500 max-w-sm">
                         Lease, insurance, visa notice, medical bill, bank letter — we'll explain it.
                     </p>
+                    {acceptedFiles[0] && (
+                        <div className="mt-4 mb-2 text-[#374151] font-medium">
+                            📄 {acceptedFiles[0].name}
+                        </div>
+                        )}
                     <div className="flex flex-row ">
-                        <button className="rounded-md bg-[#0F3B36] mx-2 px-4 py-2 text-sm font-medium text-white mt-4">
-                            Choose File
+                        <button className="rounded-md mx-2 px-4 py-2 text-sm font-medium bg-white border border-[#0F3B36] text-[#0F3B36] mt-4 cursor-pointer hover:opacity-90 active:bg-[#EFECE7]">
+                            Browse Files
                         </button>
                         {acceptedFiles[0] && 
-                        <button className="rounded-md bg-[#0F3B36] mx-2 px-4 py-2 text-sm font-medium text-white mt-4" 
+                        <button className="rounded-md bg-[#0F3B36] mx-2 px-4 py-2 text-sm font-medium text-white mt-4 cursor-pointer hover:opacity-90 active:bg-[#0A2B27]" 
                             onClick={(e) => {
                                 e.stopPropagation(); // prevents dropzone's onClick from firing
                                 handleUpload();
                             }}>
-                            Upload File
+                            Upload
                         </button>
                         }
                     </div>
-                    <p className="py-3">{fileList}</p>
                 </div>
             </>
             

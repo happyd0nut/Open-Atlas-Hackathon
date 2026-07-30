@@ -4,7 +4,7 @@ export default function SideBar() {
     return (
       <>
         <div className="flex justify-between text-black">
-          <p className="font-extrabold">Documents</p>
+          <h3>Documents</h3>
           <EllipsisVertical className="w-5 h-6" style={{ color: '#000000' }} />
         </div>
         <div className="flex mt-10">

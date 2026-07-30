@@ -9,8 +9,8 @@ export default function Dashboard() {
 
   return (
     <>
-      <div className="flex h-screen pt-5 text-black">
-        <div className="block w-xs h-full border-r border-black-200 py-5 px-10">
+      <div className="flex h-screen text-black">
+        <div className="block w-xs h-full border-r border-gray-300 py-10 px-10">
           <SideBar />
         </div>
         <div className="block w-full overflow-y-auto">

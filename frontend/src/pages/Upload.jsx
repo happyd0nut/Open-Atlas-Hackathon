@@ -8,10 +8,10 @@ export default function Upload() {
     <>
       <nav className="fixed top-0 right-0 p-6">
         <div className="flex justify-end gap-3">
-          <Link to="/signup" className="px-4 py-2 text-sm font-medium bg-[#2E6F66] text-white rounded-lg hover:opacity-90">
+          <Link to="/signup" className="px-4 py-2 text-sm font-medium bg-[#2E6F66] text-white rounded-lg hover:opacity-90 active:bg-[#275F58]">
             Sign up
           </Link>
-          <Link to="/login" className="px-4 py-2 text-sm font-medium bg-[#0F3B36] text-white rounded-lg hover:opacity-90">
+          <Link to="/login" className="px-4 py-2 text-sm font-medium bg-[#0F3B36] text-white rounded-lg hover:opacity-90 active:bg-[#0A2B27]">
             Log in
           </Link>
         </div>
