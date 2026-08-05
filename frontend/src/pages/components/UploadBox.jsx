@@ -1,6 +1,7 @@
 import { UploadCloud, FileText, LoaderCircle, X } from 'lucide-react'
 import { ChangeEvent, useState } from "react"
 import axios from "axios"
+import { supabase } from '../../../lib/supabaseClient'
 import {useDropzone} from "react-dropzone";
 import { useNavigate } from "react-router-dom";
 
@@ -55,6 +56,20 @@ export default function UploadBox() {
 
             const data = await response.json()
             console.log(data)
+
+            console.log("Sending to Supabase ...")
+            
+            const { entry, error } = await supabase.from('documents').insert([
+                {
+                    user_id: 'juliaalau',
+                    file_name: data.filename,
+                    ai_title: data.analysis.document_title,
+                    ai_summary: data.analysis.summary,
+                    ai_alerts: data.analysis.alerts,
+                    ai_action_items: data.analysis.action_items,
+                    ai_deadlines: data.analysis.deadlines
+                },
+            ])
 
             navigate("/dashboard", { state: { uploadResult: data } });
 
