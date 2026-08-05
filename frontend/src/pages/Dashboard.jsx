@@ -5,7 +5,7 @@ import MainContent from './components/MainContent'
 export default function Dashboard() {
 
   const location = useLocation();
-  const uploadResult = location.state?.uploadResult;
+  const loadId = location.state?.loadId;
 
   return (
     <>
@@ -14,7 +14,7 @@ export default function Dashboard() {
           <SideBar />
         </div>
         <div className="block w-full overflow-y-auto">
-          <MainContent result={uploadResult} />
+          <MainContent loadId={loadId} />
         </div>
       </div>
     </>

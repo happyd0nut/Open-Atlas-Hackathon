@@ -59,7 +59,7 @@ export default function UploadBox() {
 
             console.log("Sending to Supabase ...")
             
-            const { entry, error } = await supabase.from('documents').insert([
+            const { data: entry, error } = await supabase.from('documents').insert([
                 {
                     user_id: 'juliaalau',
                     file_name: data.filename,
@@ -69,9 +69,10 @@ export default function UploadBox() {
                     ai_action_items: data.analysis.action_items,
                     ai_deadlines: data.analysis.deadlines
                 },
-            ])
-
-            navigate("/dashboard", { state: { uploadResult: data } });
+            ]).select()
+            
+            console.log("Created entry:", entry[0].id)
+            navigate("/dashboard", { state: { loadId: entry[0].id } });
 
         } catch (error) {
             console.log("upload error", error)
@@ -83,9 +84,8 @@ export default function UploadBox() {
             setIsLoading(false)
         }
 
-        // TODO: Save data to databse!!! Then retrieve after navigation to new page
-
         // Currently result is bound to navigate; on reload may forget data; best to upload to database first
+        // Later idea: put id into the url and load that way as input
     }
 
     if (isLoading) {
