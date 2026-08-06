@@ -1,11 +1,11 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import SideBar from './components/SideBar'
 import MainContent from './components/MainContent'
 
 export default function Dashboard() {
 
   const location = useLocation();
-  const loadId = location.state?.loadId;
+  const { docId } = useParams();
 
   return (
     <>
@@ -14,7 +14,7 @@ export default function Dashboard() {
           <SideBar />
         </div>
         <div className="block w-full overflow-y-auto">
-          <MainContent loadId={loadId} />
+          <MainContent loadId={docId} />
         </div>
       </div>
     </>

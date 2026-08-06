@@ -9,7 +9,7 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<Upload />} />
-      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/dashboard/:docId" element={<Dashboard />} />
       <Route path="/test" element={<Test/>}/>
     </Routes>
   )

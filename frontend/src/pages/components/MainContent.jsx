@@ -141,12 +141,13 @@ export default function MainContent({ loadId }) {
 
     const actionItems = doc.ai_action_items
     const actionItemsList = actionItems.map((item, index) => {
-        item = JSON.parse(item);
+        item = JSON.parse(item)
         return (
             <div key={index} className="flex items-center mb-2">
                 <input
                     type="checkbox"
-                    checked={completedItems.includes(item.description)}
+                    checked={completedItems.includes(item.description
+                    )}
                     onChange={() => toggleCompleted(item.description)}
                     className="h-4 w-4 mr-3 mt-0.5 shrink-0 accent-[#2E6F66]" />
 
@@ -162,11 +163,11 @@ export default function MainContent({ loadId }) {
     const alerts = doc.ai_alerts
 
     const alertsList = alerts.map(alert => {
-        alert = JSON.parse(alert);
+        alert = JSON.parse(alert)
         return (
-            <div key={alert.description} className="flex flex-row rounded-lg mb-4">
+            <div key={alert} className="flex flex-row w-full flex-1 rounded-lg mb-2">
                 <div className="w-2 shrink-0 bg-[#E58126]"></div>
-                <div className="flex flex-row px-2 py-2 bg-[#EFECE7] gap-2 rounded-r-xl">
+                <div className="flex flex-row w-full px-2 py-2 bg-[#EFECE7] gap-2 rounded-r-xl">
                     <CircleAlert className="w-5 h-5 mt-0.5 shrink-0 text-[#E58126]" />
                     <p>
                         {alert.description}
@@ -233,11 +234,11 @@ export default function MainContent({ loadId }) {
                 </div>
                 <div className="grid grid-cols-2 gap-6 my-3 ">
                     <div className="flex flex-col items-start px-5 py-5 rounded-lg bg-white shadow-sm">
-                        <div className="flex items-center mb-2">
+                        <div className="flex items-center mb-4">
                             <TriangleAlert className="w-5 h-5 mr-2" style={{ color: '#0F3B36' }} strokeWidth={2} />
                             <h4>Alerts</h4>
                         </div>
-                        <div className={alertsList.length > 0 ? "text-left" : "text-left text-[#A3A2A2] gap-2"}>
+                        <div className={alertsList.length > 0 ? "text-left w-full" : "text-left text-[#A3A2A2] gap-2 w-full"}>
                             {alertsList.length > 0 ? (alertsList) : ("No Alerts Found")}
                         </div>
                     </div>

@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import { EllipsisVertical, Upload } from 'lucide-react'
 
 export default function SideBar() {

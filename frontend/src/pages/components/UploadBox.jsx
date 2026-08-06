@@ -72,7 +72,7 @@ export default function UploadBox() {
             ]).select()
             
             console.log("Created entry:", entry[0].id)
-            navigate("/dashboard", { state: { loadId: entry[0].id } });
+            navigate(`/dashboard/${entry[0].id}`);
 
         } catch (error) {
             console.log("upload error", error)
