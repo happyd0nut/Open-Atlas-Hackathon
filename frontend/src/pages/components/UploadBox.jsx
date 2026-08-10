@@ -4,10 +4,13 @@ import axios from "axios"
 import { supabase } from '../../../lib/supabaseClient'
 import {useDropzone} from "react-dropzone";
 import { useNavigate } from "react-router-dom";
+import { useUser } from '@clerk/clerk-react'
 
 export default function UploadBox() {
 
     const navigate = useNavigate();
+
+    const { user, isSignedIn } = useUser();
     
     const allStatuses = {
         IDLE: 'Idle',
@@ -61,7 +64,7 @@ export default function UploadBox() {
             
             const { data: entry, error } = await supabase.from('documents').insert([
                 {
-                    user_id: 'juliaalau',
+                    user_id: user.id,
                     file_name: data.filename,
                     ai_title: data.analysis.document_title,
                     ai_summary: data.analysis.summary,

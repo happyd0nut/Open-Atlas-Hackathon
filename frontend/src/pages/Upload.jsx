@@ -1,6 +1,12 @@
 import { Link } from 'react-router-dom'
 import UploadBox from './components/UploadBox'
 import { UploadCloud } from 'lucide-react'
+import {
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton
+} from '@clerk/clerk-react'
 
 
 export default function Upload() {
@@ -8,12 +14,17 @@ export default function Upload() {
     <>
       <nav className="fixed top-0 right-0 p-6">
         <div className="flex justify-end gap-3">
-          <Link to="/signup" className="px-4 py-2 text-sm font-medium bg-[#2E6F66] text-white rounded-lg hover:opacity-90 active:bg-[#275F58]">
-            Sign up
-          </Link>
-          <Link to="/login" className="px-4 py-2 text-sm font-medium bg-[#0F3B36] text-white rounded-lg hover:opacity-90 active:bg-[#0A2B27]">
-            Log in
-          </Link>
+          <SignedOut>
+            <SignInButton mode="modal">
+              <button className="px-4 py-2 text-sm font-medium bg-[#0F3B36] text-white rounded-lg hover:opacity-90">
+                Sign in
+              </button>
+            </SignInButton>
+          </SignedOut>
+
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
         </div>
       </nav>
     <div className="flex flex-col items-center justify-center mt-20">

@@ -13,7 +13,7 @@ export default function Dashboard() {
         <div className="block w-xs h-full border-r border-gray-300 py-10 px-10">
           <SideBar />
         </div>
-        <div className="block w-full overflow-y-auto">
+        <div className="block w-full overflow-y-auto py-5">
           <MainContent loadId={docId} />
         </div>
       </div>

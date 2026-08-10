@@ -1,5 +1,4 @@
 import {
-    User,
     Summary,
     ListTodo,
     TriangleAlert,
@@ -10,6 +9,7 @@ import {
 } from "lucide-react";
 import { supabase } from '../../../lib/supabaseClient'
 import { useState, useEffect } from "react"
+import { UserButton } from '@clerk/clerk-react'
 
 const formatICSDate = (date) => {
     return date.replaceAll("-", "");
@@ -202,7 +202,13 @@ export default function MainContent({ loadId }) {
         <>
             <div className="flex justify-between py-5 px-10 text-black">
                 <h3>Dashboard</h3>
-                <User className="w-6 h-6" style={{ color: '#0F3B36' }} />
+                <UserButton
+                    appearance={{
+                        elements: {
+                        avatarBox: "w-8 h-8"
+                        }
+                    }}
+                    />
             </div>
             <div className="flex flex-col mx-35 my-5 text-black">
                 <div className="flex justify-start mb-5">
