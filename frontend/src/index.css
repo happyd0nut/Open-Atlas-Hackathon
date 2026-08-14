@@ -44,22 +44,76 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --text: #9ca3af;
+    --text: #ffffff;
     --text-h: #f3f4f6;
-    --bg: #16171d;
+    --color-black: #f3f4f6;
+    --color-white: #16171d;
+    --bg: #222329;
     --border: #2e303a;
     --code-bg: #1f2028;
-    --accent: #c084fc;
+    --hover-bg: #383942;
+    --green-accent: rgb(150, 202, 195);
     --accent-bg: rgba(192, 132, 252, 0.15);
     --accent-border: rgba(192, 132, 252, 0.5);
     --social-bg: rgba(47, 48, 58, 0.5);
     --shadow:
       rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+
+    color-scheme: dark;
   }
 
   #social .button-icon {
     filter: invert(1) brightness(2);
   }
+
+  .icon {
+    color: var(--green-accent)
+  }
+
+  .bg-\[\#0F3B36\] {
+    background-color: var(--green-accent)
+  }
+
+  .accent-\[\#2E6F66\] {
+    accent-color: var(--green-accent)
+  }
+
+  .text-\[\#2E6F66\] {
+    color: var(--green-accent)
+  }
+
+  .text-gray-500 {
+    color: var(--color-gray-300);
+  }
+
+  .bg-\[\#EFECE7\] {
+    background-color: #23252e;
+  }
+
+  .bg-\[\#F5F3EF\] {
+      background-color: #23252e;
+  }
+
+  .text-\[\#374151\] {
+      color: #8e99ab;
+  }
+
+  .border-\[\#0F3B36\] {
+      border-color: rgb(150, 202, 195);
+  }
+
+  .text-\[\#0F3B36\] {
+      color: rgb(150, 202, 195);
+  }
+
+  .bg-\[\#E58126\] {
+    background-color: #E58126;
+  }
+
+  .doc-entry:hover {
+    background-color: var(--hover-bg)
+  }
+
 }
 
 body {
@@ -138,4 +192,8 @@ code {
   line-height: 135%;
   padding: 4px 8px;
   background: var(--code-bg);
+}
+
+.icon {
+  color: '#0F3B36'
 }

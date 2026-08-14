@@ -135,7 +135,7 @@ export default function UploadBox() {
         <>   
             <>
                 <div {...getRootProps({className : "flex flex-col items-center border-2 border-dashed border-gray-300 rounded-2xl p-16 text-center"})}>
-                    <UploadCloud className="w-6 h-6" style={{ color: '#0F3B36' }} />
+                    <UploadCloud className="w-6 h-6 icon" />
                     
                     <input {...getInputProps()} />
                     

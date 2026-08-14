@@ -45,8 +45,7 @@ export default function SideBar() {
                 </h3>
 
                 <EllipsisVertical
-                    className="w-5 h-6"
-                    style={{ color: "#000000" }}
+                    className="w-5 h-6 color-black"
                 />
             </div>
 
@@ -66,7 +65,7 @@ export default function SideBar() {
                         onClick={() =>
                             navigate(`/dashboard/${document.id}`)
                         }
-                        className="flex items-center gap-2 text-left p-2 rounded-lg hover:bg-gray-200 cursor-pointer"
+                        className="flex items-center gap-2 text-left p-2 rounded-lg cursor-pointer doc-entry"
                     >
                         <FileText className="w-4 h-4 flex-shrink-0" />
 

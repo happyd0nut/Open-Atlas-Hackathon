@@ -212,14 +212,14 @@ export default function MainContent({ loadId }) {
             </div>
             <div className="flex flex-col mx-35 my-5 text-black">
                 <div className="flex justify-start mb-5">
-                    <FileText className="w-4 h-6 mr-2" style={{ color: '#0F3B36' }} />
+                    <FileText className="w-4 h-6 mr-2 icon" />
                     <p className="text-left">
                         {doc.ai_title}
                     </p>
                 </div>
                 <div className="flex flex-col items-start my-3 px-5 py-5 rounded-lg bg-white shadow-sm">
                     <div className="flex items-center mb-2">
-                        <Summary className="w-5 h-5 mr-2" style={{ color: '#0F3B36' }} strokeWidth={2} />
+                        <Summary className="w-5 h-5 mr-2 icon" strokeWidth={2} />
                         <h4>Document Summary</h4>
                     </div>
                     <div className="flex">
@@ -231,7 +231,7 @@ export default function MainContent({ loadId }) {
                 </div>
                 <div className="flex flex-col items-start my-3 px-5 py-5 rounded-lg bg-white shadow-sm">
                     <div className="flex items-center mb-2">
-                        <ListTodo className="w-5 h-5 mr-2" style={{ color: '#0F3B36' }} strokeWidth={2} />
+                        <ListTodo className="w-5 h-5 mr-2 icon" strokeWidth={2} />
                         <h4>Action Items</h4>
                     </div>
                     <p className={actionItems.length > 0 ? "text-left" : "text-left text-[#A3A2A2]"}>
@@ -241,7 +241,7 @@ export default function MainContent({ loadId }) {
                 <div className="grid grid-cols-2 gap-6 my-3 ">
                     <div className="flex flex-col items-start px-5 py-5 rounded-lg bg-white shadow-sm">
                         <div className="flex items-center mb-4">
-                            <TriangleAlert className="w-5 h-5 mr-2" style={{ color: '#0F3B36' }} strokeWidth={2} />
+                            <TriangleAlert className="w-5 h-5 mr-2 icon" strokeWidth={2} />
                             <h4>Alerts</h4>
                         </div>
                         <div className={alertsList.length > 0 ? "text-left w-full" : "text-left text-[#A3A2A2] gap-2 w-full"}>
@@ -251,8 +251,7 @@ export default function MainContent({ loadId }) {
                     <div className="flex flex-col items-start px-5 py-5 rounded-lg bg-white shadow-sm">
                         <div className="flex items-center mb-4">
                             <CalendarClock
-                                className="w-5 h-5 mr-2"
-                                style={{ color: '#0F3B36' }}
+                                className="w-5 h-5 mr-2 icon"
                                 strokeWidth={2}
                             />
                             <h4>Deadlines</h4>
