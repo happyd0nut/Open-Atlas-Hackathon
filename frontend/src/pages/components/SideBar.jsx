@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Upload, FileText } from "lucide-react";
+import { Upload, FileText, EllipsisVertical } from "lucide-react";
 import { useUser } from "@clerk/clerk-react";
 import { supabase } from "../../../lib/supabaseClient";
 
@@ -44,15 +44,10 @@ export default function SideBar() {
                     Documents
                 </h3>
 
-                <EllipsisVertical
-                    className="w-5 h-6 color-black"
-                />
+                <EllipsisVertical className="w-5 h-6 color-black"/>
             </div>
 
-            <Link
-                to="/"
-                className="flex items-center gap-2 mt-8"
-            >
+            <Link to="/" className="flex items-center gap-2 mt-8">
                 <Upload className="w-5 h-5" />
                 <p>Upload New Doc</p>
             </Link>
@@ -65,8 +60,7 @@ export default function SideBar() {
                         onClick={() =>
                             navigate(`/dashboard/${document.id}`)
                         }
-                        className="flex items-center gap-2 text-left p-2 rounded-lg cursor-pointer doc-entry"
-                    >
+                        className="flex items-center gap-2 text-left p-2 rounded-lg cursor-pointer doc-entry">
                         <FileText className="w-4 h-4 flex-shrink-0" />
 
                         <p className="truncate">
