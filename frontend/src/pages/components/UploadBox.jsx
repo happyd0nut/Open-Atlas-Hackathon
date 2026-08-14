@@ -21,6 +21,9 @@ export default function UploadBox() {
 
     const [status, setStatus] = useState(allStatuses.IDLE)
 
+    // sets default state to English
+    const [selectedLanguage, setSelectedLanguage] = useState("English")
+
     // loading, processing a document
     const [isLoading, setIsLoading] = useState(false)
 
@@ -41,6 +44,7 @@ export default function UploadBox() {
         console.log("files:", fileList)
         const formData = new FormData();
         formData.append("file", acceptedFiles[0]);
+        formData.append("language", selectedLanguage);
 
         setIsLoading(true)
 
@@ -147,21 +151,55 @@ export default function UploadBox() {
                         <div className="mt-4 mb-2 text-[#374151] font-medium">
                             📄 {acceptedFiles[0].name}
                         </div>
-                        )}
-                    <div className="flex flex-row ">
-                        <button className="rounded-md mx-2 px-4 py-2 text-sm font-medium bg-white border border-[#0F3B36] text-[#0F3B36] mt-4 cursor-pointer hover:opacity-90 active:bg-[#EFECE7]">
-                            Browse Files
-                        </button>
-                        {acceptedFiles[0] && 
-                        <button className="rounded-md bg-[#0F3B36] mx-2 px-4 py-2 text-sm font-medium text-white mt-4 cursor-pointer hover:opacity-90 active:bg-[#0A2B27]" 
+                    )}
+
+                    {/* Browse Files button */}
+                    <button className="rounded-md mx-2 px-4 py-2 text-sm font-medium bg-white border border-[#0F3B36] text-[#0F3B36] mt-4 cursor-pointer hover:opacity-90 active:bg-[#EFECE7]">
+                        Browse Files
+                    </button>
+
+                    {/* Preferred Language */}
+                    <div
+                        className="w-full max-w-sm mt-6 text-left"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <p>
+                            Preferred language
+                        </p>
+
+                        <select
+                            value={selectedLanguage}
+                            onChange={(e) => setSelectedLanguage(e.target.value)}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-white text-black"
+                        >
+                            <option value="English">English</option>
+                            <option value="Spanish">Español — Spanish</option>
+                            <option value="Chinese">中文 — Chinese</option>
+                            <option value="Hindi">हिन्दी — Hindi</option>
+                            <option value="Arabic">العربية — Arabic</option>
+                            <option value="French">Français — French</option>
+                            <option value="Portuguese">Português — Portuguese</option>
+                            <option value="Bengali">বাংলা — Bengali</option>
+                            <option value="Russian">Русский — Russian</option>
+                            <option value="Korean">한국어 — Korean</option>
+                            <option value="Vietnamese">Tiếng Việt — Vietnamese</option>
+                            <option value="Haitian Creole">Kreyòl Ayisyen — Haitian Creole</option>
+                        </select>
+                    </div>
+
+                    {/* Upload button only appears after a file is selected */}
+                    {acceptedFiles[0] && (
+                        <button
+                            className="rounded-md bg-[#0F3B36] mx-2 px-4 py-2 text-sm font-medium text-white mt-6 cursor-pointer hover:opacity-90 active:bg-[#0A2B27]"
                             onClick={(e) => {
-                                e.stopPropagation(); // prevents dropzone's onClick from firing
+                                e.stopPropagation();
                                 handleUpload();
-                            }}>
+                            }}
+                        >
                             Upload
                         </button>
-                        }
-                    </div>
+                    )}
+
                 </div>
             </>
             

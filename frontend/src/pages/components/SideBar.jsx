@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { EllipsisVertical, Upload, FileText } from "lucide-react";
+import { Upload, FileText } from "lucide-react";
 import { useUser } from "@clerk/clerk-react";
 import { supabase } from "../../../lib/supabaseClient";
 
