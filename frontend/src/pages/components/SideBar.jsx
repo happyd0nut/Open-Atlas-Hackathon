@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { EllipsisVertical, Upload, FileText } from "lucide-react";
+import { Upload, FileText } from "lucide-react";
 import { useUser } from "@clerk/clerk-react";
 import { supabase } from "../../../lib/supabaseClient";
 
@@ -43,11 +43,6 @@ export default function SideBar() {
                 <h3>
                     Documents
                 </h3>
-
-                <EllipsisVertical
-                    className="w-5 h-6"
-                    style={{ color: "#000000" }}
-                />
             </div>
 
             <Link

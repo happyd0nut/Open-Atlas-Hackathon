@@ -43,7 +43,7 @@ def test_llm_connection() -> str:
     return content
 
 # analyze the text we have extracted from pdf / ocr processing
-def analyze_document(document_text: str) -> dict[str, Any]:
+def analyze_document(document_text: str, language: str = "English") -> dict[str, Any]:
     """
     Analyze extracted document text with DeepSeek and return structured JSON
     that matches the frontend sections.
@@ -56,6 +56,17 @@ def analyze_document(document_text: str) -> dict[str, Any]:
     prompt = f"""
 You are an AI document assistant helping people understand complex and important
 documents and know what to do next.
+
+The user's preferred language is: {language}.
+
+Write all user-facing content in {language}.
+Keep all JSON field names exactly as shown in English.
+Do not translate the JSON keys.
+Keep the "document_type" value in English using one of the allowed categories.
+
+Preserve factual information exactly and do not alter important identifiers,
+including dates, monetary amounts, case numbers, receipt numbers, form numbers,
+addresses, phone numbers, URLs, account numbers, and other identifying numbers.
 
 Analyze the document below and return ONLY valid JSON using this exact structure:
 

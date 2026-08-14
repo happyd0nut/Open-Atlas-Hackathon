@@ -1,4 +1,4 @@
-from fastapi import FastAPI, UploadFile, File, HTTPException
+from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 
 from app.services.document_processor import process_pdf
 from app.llm import analyze_document, test_llm_connection
@@ -17,7 +17,10 @@ def root():
 
 # uploading the pdf
 @app.post("/api/upload")
-async def upload_document(file: UploadFile = File(...)):
+async def upload_document(
+    file: UploadFile = File(...),
+    language: str = Form("English")
+):
     if file.content_type != "application/pdf":
         raise HTTPException(
             status_code=400,
@@ -51,7 +54,7 @@ async def upload_document(file: UploadFile = File(...)):
 
     try:
         # Analyze the extracted document text with DeepSeek.
-        analysis = analyze_document(extracted_text)
+        analysis = analyze_document(extracted_text, language)
     except Exception as exc:
         raise HTTPException(
             status_code=500,
