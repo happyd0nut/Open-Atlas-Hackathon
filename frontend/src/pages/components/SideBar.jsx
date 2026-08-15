@@ -47,7 +47,7 @@ export default function SideBar() {
 
                 <EllipsisVertical className="w-5 h-6 color-black"/>
             </div>
-            <div className="rounded-md border-1 border-black mt-8 p-2 bg-white">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-300 bg-white text-black text-sm font-medium mt-8 hover:bg-gray-50 transition">
                 <Link to="/" className="flex items-center gap-2 ">
                     <Upload className="w-4 h-4 shrink-0" />
                     <p>Upload New Doc</p>
