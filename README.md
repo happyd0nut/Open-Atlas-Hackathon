@@ -24,7 +24,7 @@ Create an file named '.env' inside the folder ./frontend containing the followin
 * VITE_CLERK_PUBLISHABLE_KEY=enter your Clerk publishable key here
 * FEATHERLESS_API_KEY=enter your featherless api key here
 
-### 1. Running Frontend & Backend with Docker Compose:
+### 1. Running Frontend & Backend with Docker Compose (Preferred Method):
 
 **In root directory:**
 
