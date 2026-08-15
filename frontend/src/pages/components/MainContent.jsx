@@ -119,9 +119,6 @@ export default function MainContent({ loadId }) {
                 .eq('user_id', user.id)
                 .maybeSingle();
 
-            if (error) {
-                return <h1>Error. Document Not Found.</h1>
-            }
             console.log("Supabase response:", { data, error });
             if (!error) setDoc(data);
         };
