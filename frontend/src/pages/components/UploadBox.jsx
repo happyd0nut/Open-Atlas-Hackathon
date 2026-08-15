@@ -5,12 +5,14 @@ import { supabase } from '../../../lib/supabaseClient'
 import {useDropzone} from "react-dropzone";
 import { useNavigate } from "react-router-dom";
 import { useUser } from '@clerk/clerk-react'
+import { useEffectiveUser } from '../../../lib/EffectiveUserContext';
 
 export default function UploadBox() {
 
     const navigate = useNavigate();
 
-    const { user, isSignedIn } = useUser();
+    //const { user, isSignedIn } = useUser();
+    const { user, isGuest } = useEffectiveUser();
     
     const allStatuses = {
         IDLE: 'Idle',

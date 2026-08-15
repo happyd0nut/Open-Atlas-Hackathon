@@ -61,8 +61,6 @@ async def upload_document(
             detail=f"Document analysis failed: {str(exc)}"
         ) from exc
 
-    
-
     return {
         "filename": file.filename,
         "content_type": file.content_type,

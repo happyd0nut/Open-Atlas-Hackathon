@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import { supabase } from '../../../lib/supabaseClient'
 import { useState, useEffect } from "react"
-import { UserButton } from '@clerk/clerk-react'
+import { useEffectiveUser } from "../../../lib/EffectiveUserContext";
 
 const formatICSDate = (date) => {
     return date.replaceAll("-", "");
@@ -101,32 +101,43 @@ const downloadCalendarInvite = (deadline) => {
 export default function MainContent({ loadId }) {
 
     const [completedItems, setCompletedItems] = useState([]);
-    const [doc, setDoc] = useState(null);
+    const [doc, setDoc] = useState(undefined);
+    const { user, isGuest} = useEffectiveUser();
 
     // Retreive target ID
     useEffect(() => {
         console.log("useEffect fired, loadId is:", loadId);
 
         const fetchDocument = async () => {
+
             console.log("fetchDocument called");
 
             const { data, error } = await supabase
                 .from("documents")
                 .select("*")
                 .eq("id", loadId)
-                .single();
+                .eq('user_id', user.id)
+                .maybeSingle();
 
+            if (error) {
+                return <h1>Error. Document Not Found.</h1>
+            }
             console.log("Supabase response:", { data, error });
             if (!error) setDoc(data);
         };
 
         fetchDocument();
-    }, [loadId]);
+    }, [loadId, user]);
 
+                
     console.log("Main Content has recieved repsonse: ", doc)
 
-    if (!doc) {
+    if (doc === undefined) {
         return <div>Loading...</div>; // stops here until doc is populated
+    }
+
+    if (doc === null) {
+        return <h3>Browse Your Documents on the Left</h3>
     }
 
     const toggleCompleted = (description) => {
@@ -200,16 +211,6 @@ export default function MainContent({ loadId }) {
 
     return (
         <>
-            <div className="flex justify-between py-5 px-10 text-black">
-                <h3>Dashboard</h3>
-                <UserButton
-                    appearance={{
-                        elements: {
-                        avatarBox: "w-8 h-8"
-                        }
-                    }}
-                    />
-            </div>
             <div className="flex flex-col mx-35 my-5 text-black">
                 <div className="flex justify-start mb-5">
                     <FileText className="w-4 h-6 mr-2 icon" />

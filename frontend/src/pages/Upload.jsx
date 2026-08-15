@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import UploadBox from './components/UploadBox'
 import { UploadCloud } from 'lucide-react'
 import {
@@ -7,13 +7,25 @@ import {
   SignedOut,
   UserButton
 } from '@clerk/clerk-react'
+import { useEffectiveUser } from '../../lib/EffectiveUserContext'
 
 
 export default function Upload() {
+
+  const { status, user, isGuest } = useEffectiveUser();
+  const navigate = useNavigate();
+
+  console.log("Current user:", user)
+
   return (
     <>
-      <nav className="fixed top-0 right-0 p-6">
+      <nav className="fixed top-0 right-0 p-3 mr-6 mt-3">
         <div className="flex justify-end gap-3">
+          {user ? (<div className="flex p-2 mr-3 border-1 bg-white rounded-md">
+            <Link to="/dashboard/0" >
+                    <p className="text-black">To Dashboard</p>
+            </Link>
+          </div>) : <></> }
           <SignedOut>
             <SignInButton mode="modal">
               <button className="px-4 py-2 text-sm font-medium bg-[#0F3B36] text-white rounded-lg hover:opacity-90">

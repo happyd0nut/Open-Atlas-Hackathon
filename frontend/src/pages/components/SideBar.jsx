@@ -3,10 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { Upload, FileText, EllipsisVertical } from "lucide-react";
 import { useUser } from "@clerk/clerk-react";
 import { supabase } from "../../../lib/supabaseClient";
+import { useEffectiveUser } from "../../../lib/EffectiveUserContext";
 
 export default function SideBar() {
 
-    const { user, isSignedIn } = useUser();
+    const { status, user, isGuest } = useEffectiveUser();
     const navigate = useNavigate();
 
     const [documents, setDocuments] = useState([]);
@@ -15,7 +16,7 @@ export default function SideBar() {
 
         const fetchDocuments = async () => {
 
-            if (!isSignedIn || !user) {
+            if (status === "loading" || !user) {
                 return;
             }
 
@@ -35,7 +36,7 @@ export default function SideBar() {
 
         fetchDocuments();
 
-    }, [user, isSignedIn]);
+    }, [user, status]);
 
     return (
         <>
@@ -46,13 +47,14 @@ export default function SideBar() {
 
                 <EllipsisVertical className="w-5 h-6 color-black"/>
             </div>
+            <div className="rounded-md border-1 border-black mt-8 p-2 bg-white">
+                <Link to="/" className="flex items-center gap-2 ">
+                    <Upload className="w-4 h-4 shrink-0" />
+                    <p>Upload New Doc</p>
+                </Link>
+            </div>
 
-            <Link to="/" className="flex items-center gap-2 mt-8">
-                <Upload className="w-5 h-5" />
-                <p>Upload New Doc</p>
-            </Link>
-
-            <div className="mt-8 flex flex-col gap-2">
+            <div className="mt-4 flex flex-col gap-2">
 
                 {documents.map((document) => (
                     <button
