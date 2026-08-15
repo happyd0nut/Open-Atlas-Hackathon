@@ -140,7 +140,7 @@ export default function UploadBox() {
     return (
         <>   
             <>
-                <div {...getRootProps({className : "flex flex-col items-center border-2 border-dashed border-gray-300 rounded-2xl p-16 text-center"})}>
+                <div {...getRootProps({className : "flex flex-col items-center border-2 border-dashed border-gray-400 rounded-2xl p-16 text-center bg-white"})}>
                     <UploadCloud className="w-6 h-6 icon" />
                     
                     <input {...getInputProps()} />
@@ -154,11 +154,26 @@ export default function UploadBox() {
                             📄 {acceptedFiles[0].name}
                         </div>
                     )}
+                    <div>
+                        {/* Browse Files button */}
+                        <button className="rounded-md mx-2 px-4 py-2 text-sm font-medium bg-[#0F3B36] border border-[#0F3B36] text-white mt-4 cursor-pointer hover:opacity-90 active:bg-[#EFECE7]">
+                            Browse Files
+                        </button>
 
-                    {/* Browse Files button */}
-                    <button className="rounded-md mx-2 px-4 py-2 text-sm font-medium bg-white border border-[#0F3B36] text-[#0F3B36] mt-4 cursor-pointer hover:opacity-90 active:bg-[#EFECE7]">
-                        Browse Files
-                    </button>
+                        {/* Upload button only appears after a file is selected */}
+                        {acceptedFiles[0] && (
+                            <button
+                                className="rounded-md bg-[#185c54] mx-2 px-4 py-2 text-sm font-medium text-white mt-6 cursor-pointer hover:opacity-90 active:bg-[#0A2B27]"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleUpload();
+                                }}
+                            >
+                                Upload
+                            </button>
+                        )}
+                    </div>
+                    
 
                     {/* Preferred Language */}
                     <div
@@ -172,7 +187,7 @@ export default function UploadBox() {
                         <select
                             value={selectedLanguage}
                             onChange={(e) => setSelectedLanguage(e.target.value)}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-white text-black"
+                            className="w-full px-3 py-2 border border-gray-400 rounded-lg bg-white text-black"
                         >
                             <option value="English">English</option>
                             <option value="Spanish">Español — Spanish</option>
@@ -188,19 +203,6 @@ export default function UploadBox() {
                             <option value="Haitian Creole">Kreyòl Ayisyen — Haitian Creole</option>
                         </select>
                     </div>
-
-                    {/* Upload button only appears after a file is selected */}
-                    {acceptedFiles[0] && (
-                        <button
-                            className="rounded-md bg-[#0F3B36] mx-2 px-4 py-2 text-sm font-medium text-white mt-6 cursor-pointer hover:opacity-90 active:bg-[#0A2B27]"
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                handleUpload();
-                            }}
-                        >
-                            Upload
-                        </button>
-                    )}
 
                 </div>
             </>

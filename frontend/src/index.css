@@ -74,6 +74,10 @@
     background-color: var(--green-accent)
   }
 
+  .bg-\[\#185c54\] {
+      background-color: rgb(205, 246, 240);
+  }
+
   .accent-\[\#2E6F66\] {
     accent-color: var(--green-accent)
   }
