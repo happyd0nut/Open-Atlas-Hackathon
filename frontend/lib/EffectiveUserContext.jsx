@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 import { useUser } from '@clerk/clerk-react'
-import { getOrCreateGuestSession } from './guestSession'
+import { getOrCreateGuestSession } from './GuestSession.js'
 
 const EffectiveUserContext = createContext(null)
 
