@@ -50,9 +50,8 @@ export default function UploadBox() {
 
         setIsLoading(true)
 
-        try { // TODO: replace with the post backend url
-            // await axios.post("https://httpbin.org/post", formData);
-            const response = await fetch("/api/upload", {
+        try { 
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/upload`, {
                 method : "POST",
                 body : formData
             })
