@@ -2,9 +2,17 @@ from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 
 from app.services.document_processor import process_pdf
 from app.llm import analyze_document, test_llm_connection
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["https://open-atlas-hackathon.vercel.app"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/test-llm")
 def test_llm():
